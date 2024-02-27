@@ -1,3 +1,4 @@
+using SignalRDemoProject.Business;
 using SignalRDemoProject.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,8 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
                                 .AllowCredentials()
                                 .SetIsOriginAllowed(origin => true)
                                 ));
+
+builder.Services.AddTransient<MyBusiness>();
 builder.Services.AddSignalR();
 
 
