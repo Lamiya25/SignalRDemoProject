@@ -37,5 +37,5 @@ app.UseAuthorization();
 app.MapControllers();
 //https://localhost:7069/myhub
 app.MapHub<MyHub>("/myhub");
-
+app.MapHub<MessageHub>("/messagehub");
 app.Run();
