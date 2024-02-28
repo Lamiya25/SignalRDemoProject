@@ -4,7 +4,7 @@ namespace SignalRDemoProject.Hubs
 {
     public class MessageHub:Hub
     {
-        public async Task SendMessageAsync(string message, string groupName, IEnumerable<string> connectionIds)
+        public async Task SendMessageAsync(string message, string groupName,/* IEnumerable<string> connectionIds,*/ IEnumerable<string> groups)
         {
             #region Caller 
             //Tekce servere alert gonderen clientla elaqe qurar. 
@@ -51,10 +51,10 @@ namespace SignalRDemoProject.Hubs
             // await Clients.Groups(groupName).SendAsync("receiveMessage", message);
             #endregion
 
-
             #region Groups 
 
-
+            //Birden chox qrupdaki clientlara bilirie bulunmak ucundur
+            //  await Clients.Groups(groups).SendAsync("receiveMessage", message);
 
             #endregion
 
@@ -62,11 +62,15 @@ namespace SignalRDemoProject.Hubs
 
             //Belirtilen grupdaki belirtilen clientlar disindaki tum clientlara mesaj iletmemizi saglayir
 
-            await Clients.GroupExcept(groupName, connectionIds).SendAsync("receiveMessage", message);
+            //  await Clients.GroupExcept(groupName, connectionIds).SendAsync("receiveMessage", message);
 
             #endregion
 
             #region OthersInGroup 
+            //bildiride bulunan client xaricinde grupdaki butun clientlara bildiride bulunan fuksiyadir.
+
+           // await Clients.OthersInGroup(groupName).SendAsync("receiveMessage", message);
+
 
             #endregion
 
